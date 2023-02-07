@@ -4,6 +4,7 @@ import logging
 
 # Config file
 import config
+#import scan
 
 # Custom functions
 from helpers import loop_through_sensors
@@ -30,5 +31,5 @@ def poll(sensors, time_interval):
         time.sleep(time_interval)
         
 
-poll(sensors, 5)
+poll(sensors, 60)
 
