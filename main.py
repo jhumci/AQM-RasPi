@@ -1,7 +1,5 @@
 # %% packages to load
 
-import logging
-
 # Config file
 import config
 #import scan
