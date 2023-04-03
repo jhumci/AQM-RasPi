@@ -1,6 +1,19 @@
+import signal
+
+
+
 def loop_through_sensors(sensors):
 
     ''' A function that loop through a dictionary of sensors defined in the config file'''
+
+    def handler(signum, frame):
+        print("BTLE device not found.")
+        #raise Exception("BTLE device not found.")
+        #continue
+
+    signal.signal(signal.SIGALRM, handler)
+    signal.alarm(20)
+
 
     for sensor in sensors:
         ID = sensor["BT_TARGET_ADDRESSES"]
