@@ -91,7 +91,7 @@ for device_id in sensors:
 
     XENSIV_BLE_Adapter.disconnect()
 
-    print("Wait till all sensors stopped blinking")
+    print("Wait till all sensors stopped blinking. After that, interrupt power supply of the sensors.")
 
     sys.exit()
     # https://stackoverflow.com/questions/59597223/how-to-write-decimal-value-1-from-bluepy-to-ble-device
