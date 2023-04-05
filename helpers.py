@@ -26,11 +26,13 @@ def loop_through_sensors(sensors):
 import csv
 import os
 
-def write_to_file(measurement):
 
+
+def write_to_file(measurement):
+    
     '''A function that takes the measurement dict an writes it to a CSV-file named like the room'''
     #csv_file =  "/home/pi/infineon_co2_sensor/server/{}.csv".format(measurement["Room"])
-    csv_file =  "{}.csv".format(measurement["Room"])
+    csv_file =  "logs_{}.csv".format(measurement["Room"])
 
 
     if os.path.exists(csv_file):
@@ -100,7 +102,7 @@ def get_data_from_sensor(ID):
         # Apply bit-shifting, to get concentration in ppm
         CO2_Reading = CO2_Data_Characteristic.read()
         CO2_Raw = (CO2_Reading[1] << 8) + CO2_Reading[0]
-        # print("CO2 Concentration: %s ppm" % CO2_Raw)
+        print("CO2 Concentration: %s ppm" % CO2_Raw)
         co2 = {"name": "co2_ppm", "unit": "integer", "value": CO2_Raw}
         logging.debug("CO2 Concentration: %s ppm" % CO2_Raw)
 
@@ -128,7 +130,7 @@ def get_data_from_sensor(ID):
         Hum_Raw_High = (Hum_Reading[1] << 8) + Hum_Reading[0]
         Hum_Raw_Low = (Hum_Reading[3] << 8) + Hum_Reading[2]
         Hum_Raw = Hum_Raw_High + (Hum_Raw_Low / 1000)
-        print(Hum_Raw)
+        #print(Hum_Raw)
         logging.debug("Humidity: %s rF " % Hum_Raw)
         hum = {"name": "humidity", "unit": "percent", "value": Hum_Raw}
 

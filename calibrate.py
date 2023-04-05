@@ -18,13 +18,16 @@ for device in devices:
 if sensors:
     print("Found: {}".format(sensors))
 else:
+    print("No sensors found. Disconnect power-supply!")
     sys.exit()
 
 device_id = sensors[0]
 
 
+
 #reference_value = 400
 reference_value = input("What is the reference value (in ppm) You want to set the sensors to?")
+reference_value = int(reference_value)
 
 if (reference_value < 350 or reference_value > 900):
     print("Error: Reference value must be set between 350 and 900 ppm!")
@@ -90,10 +93,11 @@ for device_id in sensors:
     print(Config_EnableSensorCalibrationCharacteristic.read())
 
     XENSIV_BLE_Adapter.disconnect()
+    time.sleep(1)
+    
+print("Wait till all sensors stopped blinking (red, yellow,green). After that, interrupt power supply of the sensors.")
 
-    print("Wait till all sensors stopped blinking. After that, interrupt power supply of the sensors.")
-
-    sys.exit()
+sys.exit()
     # https://stackoverflow.com/questions/59597223/how-to-write-decimal-value-1-from-bluepy-to-ble-device
     # Seems to work.
     # Add automatic logging
